@@ -7,7 +7,7 @@
 #include <math.h>
 #include <unistd.h>
 
-#define NUM_PARTICULAS 1000
+#define NUM_PARTICULAS 10000
 #define LARGURA 1366
 #define ALTURA 720
 
@@ -39,6 +39,7 @@ int main(int argc, char** argv){
 void render(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glBegin(GL_LINES);
+	glColor4b(20,20,127,60);
 	for(int i = 0; i<NUM_PARTICULAS; i++){
 		if(particulas[i].ativa){	
 			float x_anterior = particulas[i].x;
@@ -60,16 +61,17 @@ void render(){
 
 void InicGL(int Largura, int Altura){
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		
-  glClearDepth(1.0);			
-  glDepthFunc(GL_LESS);			
-  glEnable(GL_DEPTH_TEST);			
-  glShadeModel(GL_SMOOTH);		
+	glClearDepth(1.0);			
+	glDepthFunc(GL_LESS);			
+	glEnable(GL_DEPTH_TEST);			
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glShadeModel(GL_SMOOTH);		
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();		
+	glMatrixMode(GL_MODELVIEW);
 
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();		
-  glMatrixMode(GL_MODELVIEW);
-
-  InicParticulas();
+	InicParticulas();
 }
 
 void InicParticulas(){	
@@ -77,7 +79,7 @@ void InicParticulas(){
 		float velocidade = (float)(rand() % 1000)/100000 +0.001;
 		particulas[i].velocidadeX = velocidade/10;
 		particulas[i].velocidadeY = -velocidade;
-		particulas[i].x = (rand() % 1000)/500.0f-1;
+		particulas[i].x = (rand() % 1000)/100.0f-1.2;
 		particulas[i].y = 1;
 		particulas[i].ativa = 1;
 		// particulas[i].x = 0.5f;
@@ -89,6 +91,6 @@ void ReinicParticula(int i){
 	float velocidade = (float)(rand() % 1000)/100000 +0.001;
 	particulas[i].velocidadeX = velocidade/10;
 	particulas[i].velocidadeY = -velocidade;
-	particulas[i].x = (rand() % 1000)/500.0f-1;
+	particulas[i].x = (rand() % 1000)/100.0f-1.2;
 	particulas[i].y = 1;
 }
