@@ -1,9 +1,9 @@
 // g++ algumacoisa.cpp -o algumacoisa -lGL -lglut
 
 #include <stdio.h>
-#include <GL/glut.h>   
-#include <GL/gl.h>	  
-#include <GL/glu.h>	  
+#include <GL/glut.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 #include <math.h>
 #include <unistd.h>
 
@@ -30,7 +30,7 @@ int main(int argc, char** argv){
 
 	glutDisplayFunc(render);
 	glutIdleFunc(render);
-	InicGL(LARGURA,ALTURA);	
+	InicGL(LARGURA,ALTURA);
 	glutMainLoop();
 	return 0;
 }
@@ -40,7 +40,7 @@ void render(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glBegin(GL_LINES);
 	for(int i = 0; i<NUM_PARTICULAS; i++){
-		if(particulas[i].ativa){	
+		if(particulas[i].ativa){
 			float x_anterior = particulas[i].x;
 			float y_anterior = particulas[i].y;
 			particulas[i].x += particulas[i].velocidadeX;
@@ -59,20 +59,18 @@ void render(){
 }
 
 void InicGL(int Largura, int Altura){
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		
-  glClearDepth(1.0);			
-  glDepthFunc(GL_LESS);			
-  glEnable(GL_DEPTH_TEST);			
-  glShadeModel(GL_SMOOTH);		
-
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();		
-  glMatrixMode(GL_MODELVIEW);
-
-  InicParticulas();
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+ 	glClearDepth(1.0);
+  	glDepthFunc(GL_LESS);
+  	glEnable(GL_DEPTH_TEST);
+  	glShadeModel(GL_SMOOTH);
+  	glMatrixMode(GL_PROJECTION);
+  	glLoadIdentity();
+  	glMatrixMode(GL_MODELVIEW);
+  	InicParticulas();
 }
 
-void InicParticulas(){	
+void InicParticulas(){
 	for(int i=0;i<NUM_PARTICULAS;i++){
 		float velocidade = (float)(rand() % 1000)/100000 +0.001;
 		particulas[i].velocidadeX = velocidade/10;
@@ -85,7 +83,7 @@ void InicParticulas(){
 	}
 }
 
-void ReinicParticula(int i){	
+void ReinicParticula(int i){
 	float velocidade = (float)(rand() % 1000)/100000 +0.001;
 	particulas[i].velocidadeX = velocidade/10;
 	particulas[i].velocidadeY = -velocidade;
