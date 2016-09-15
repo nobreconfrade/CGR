@@ -13,13 +13,13 @@
 
 int janela;
 
-GLfloat spec[] = {.7, .7, .7, .7}, shin[] = {90.0}, luz_pos[] = {-10,10,5,10};
+GLfloat spec[] = {.7, .7, .7, .7}, shin[] = {90.0}, luz_pos[] = {2,2,2,1};
 
 void render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    glTranslatef(0,-0.2,1.95);
+    glTranslatef(0,-0.2,-1.95);
     glutSolidSphere(1,200,200);
 
     glTranslatef(0,0.3,0);
@@ -28,8 +28,8 @@ void render(){
     glTranslatef(0,0.3,0);
     glutSolidSphere(0.960f,200,200);
 
-    glTranslatef(0,0.5,0.1);
-    glutSolidCone(100,100,20,20);
+    glTranslatef(0,-0.05,0.045);
+    glutSolidCone(0.99,0.99,50,50);
 
     glutSwapBuffers();
 }
