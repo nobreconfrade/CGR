@@ -19,7 +19,9 @@ void render(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    glTranslatef(0,-0.2,-1.95);
+    // glRotatef(15,0,1,0);
+
+    glTranslatef(0,-0.2,-8.0);
     glutSolidSphere(1,200,200);
 
     glTranslatef(0,0.3,0);
@@ -42,14 +44,14 @@ void InicGL(int w, int h){
 
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, spec);
-    glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, shin);
+    glMaterialfv(GL_FRONT, GL_SPECULAR, spec);
+    glMaterialfv(GL_FRONT, GL_SHININESS, shin);
     glLightfv(GL_LIGHT0, GL_POSITION, luz_pos);
 
     glShadeModel(GL_SMOOTH);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    // gluPerspective(45.0f,(GLfloat)w/h,0.1f,100.0f);
+    gluPerspective(45.0f,(GLfloat)w/h,0.1f,100.0f);
     glMatrixMode(GL_MODELVIEW);
 }
 
