@@ -1,2 +1,3 @@
-all:
-	g++ algumacoisa.cpp -lGL -lglut -o algumacoisa
+compcastelo:
+	gcc castelo.c -lglut -lGL -lGLU -lm -o castelo
+	./castelo
