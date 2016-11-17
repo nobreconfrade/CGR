@@ -7,7 +7,7 @@
 
 int window;
 
-static int shoulder=0, elbow=0;
+GLfloat spin_shoulder=0, spin_elbow=0;
 GLfloat dx, y, z;
 
 // functions and structs -> cube
@@ -78,26 +78,31 @@ void start(){
 
 void robot(){
     glPushMatrix();
-        glTranslatef (-0.5, 0.0, 0.0);
-        glScalef(0.09, 0.28, 0.09);
+        glTranslatef (-2.0, 0.0, 0.0);
+    // glPushMatrix();
+        glScalef(0.25, 0.5, 0.09);
         cube();
-        // glRotatef ((GLfloat) shoulder, 0.0, 0.0, 1.0);
-
+        glRotatef (spin_elbow, 0.0, 0.0, -1.0);
+    // glPopMatrix();
         // glTranslatef (-1.5, 0.0, 0.0);
 
         glPushMatrix();
-            glScalef (0.5, 0.4, 0.4);
-            glutSolidSphere (0.5, 150,150);
+            // glColor3f(1,0,0);
+            glTranslatef(0, 1.4, 0.0);
+            glScalef (0.5, 0.8, 0.4);
+            cube();
+            glRotatef (spin_shoulder, 0.0, 0.0, -1.0);
+            // glutSolidSphere (0.5, 150,150);
         glPopMatrix();
 
-        glTranslatef (-0.2, 0.0, 0.0);
-        glRotatef ((GLfloat) elbow, 0.0, 0.0, 1.0);
-        glTranslatef (-0.5, 0.0, 0.0);
-
-        glPushMatrix();
-            glScalef (1.0, 0.4, 0.4);
-            glutSolidSphere (0.5, 150,150);
-        glPopMatrix();
+        // glTranslatef (-0.2, 0.0, 0.0);
+        // // glRotatef ((GLfloat) elbow, 0.0, 0.0, 1.0);
+        // glTranslatef (-0.5, 0.0, 0.0);
+        //
+        // glPushMatrix();
+        //     glScalef (1.0, 0.4, 0.4);
+        //     // glutSolidSphere (0.5, 150,150);
+        // glPopMatrix();
     glPopMatrix();
 
 }
@@ -129,14 +134,23 @@ void reshape (int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 }
 
-void keyboard(unsigned char key, int x, int y)
-{
-	switch (key) {
-		case ESCAPE:
+void keyboard(unsigned char key, int x, int y){
+switch (key) {
+    case 'x':
+        spin_elbow += 10.0;
+        break;
+    case 'z':
+        spin_shoulder += 10.0;
+        break;
+    case 'r':
+        spin_elbow = spin_shoulder = 0.0;
+        break;
+	case ESCAPE:
 		glutDestroyWindow(window);
 		exit(0);
 		break;
 	}
+    glutPostRedisplay();
 }
 
 
