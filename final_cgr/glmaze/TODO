@@ -1,0 +1,7 @@
+Still to do ...
+
+- store crates in list and draw complete list (lesson12)
+- resort files/functions (e.g. no drawing primitives in shot.c)
+- audio support
+- make maze to be loaded configurable and transfer maze data 
+  and textures over the net from the servers file system
