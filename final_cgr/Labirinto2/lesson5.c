@@ -25,12 +25,12 @@ GLuint texture[3];       // storage for 3 textures;
 int light = 0;           // lighting on/off
 int blend = 0;           // blending on/off
 
-GLfloat yrot = 0.0f;      //Rota��o Horizontal
+GLfloat yrot = 45.0f;      //Rota��o Horizontal
 GLfloat lookupdown = 0.0; //Rota��o Vertical
 
 const float piover180 = 0.0174532925f; //constante para convers�o de graus para radianos
 
-float xpos = 0.0f, ypos = 0.0f,zpos = 0.0f; //Posi��es
+float xpos = 38.0f, ypos = 0.0f,zpos = -5.9f; //Posi��es
 float camerax = 0.0f, cameray = 0.0f, cameraz = 0.0f; //cameras
 
 GLfloat LightAmbient[]  = {0.5f, 0.5f, 0.5f, 1.0f};
@@ -284,8 +284,7 @@ void DrawGLScene()
   //glRotatef(rquad,0.0f,1.0f,1.0f);		// Rotate The Pyramid On The Y axis
   double viewup[3] = {0.0, 1.0, 0.0};
   double rot = yrot *3.14159 /180.0;
-  double target[3] = {cos(rot) + sin
-	  (rot), lookupdown, -sin(rot) +  cos(rot)}; //Posi��o Inicial da camera
+  double target[3] = {cos(rot) + sin(rot), lookupdown, -sin(rot) +  cos(rot)}; //Posi��o Inicial da camera
 
 
   gluLookAt((double)xpos, 0.0, (double)zpos, xpos + 2* target[0] + camerax, target[1] + cameray, zpos + 2* target[2] +cameraz,  viewup[0],  viewup[1],  viewup[2]);
