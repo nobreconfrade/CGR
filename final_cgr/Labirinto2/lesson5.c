@@ -25,7 +25,8 @@ GLuint texture[3];       // storage for 3 textures;
 int light = 0;           // lighting on/off
 int blend = 0;           // blending on/off
 
-GLfloat yrot = 45.0f;      //Rota��o Horizontal
+// GLfloat yrot = 45.0f;      //Rota��o Horizontal
+GLfloat yrot = 0.0f;      //Rota��o Horizontal
 GLfloat lookupdown = 0.0; //Rota��o Vertical
 
 const float piover180 = 0.0174532925f; //constante para convers�o de graus para radianos
@@ -283,12 +284,13 @@ void DrawGLScene()
   glTranslatef(-6.0f,0.0f,-40.0f);		// Move Left 1.5 Units And Into The Screen 6.0
   //glRotatef(rquad,0.0f,1.0f,1.0f);		// Rotate The Pyramid On The Y axis
   double viewup[3] = {0.0, 1.0, 0.0};
-  double rot = yrot *3.14159 /180.0;
+  // double rot = yrot*3.14159 /180.0;
+  double rot =  45 *3.14159 /180.0;
   double target[3] = {cos(rot) + sin(rot), lookupdown, -sin(rot) +  cos(rot)}; //Posi��o Inicial da camera
 
 
   gluLookAt((double)xpos, 0.0, (double)zpos, xpos + 2* target[0] + camerax, target[1] + cameray, zpos + 2* target[2] +cameraz,  viewup[0],  viewup[1],  viewup[2]);
-
+  glRotatef(yrot, 0.f, 1.f, 0.f);
   // Done Drawing The Cube
   int i, j;
   int wall;
@@ -487,23 +489,25 @@ void specialKeyPressed(int key, int x, int y)
 	break;
 
     case GLUT_KEY_UP: // walk forward (bob head)
-	rot = yrot *3.14159 /180.0;
-	xpos += (float)(cos(rot) + sin(rot)) * 0.05f;
-	zpos += (float)(-sin(rot) +  cos(rot)) * 0.05f;
+	// rot = yrot *3.14159 /180.0;
+	rot = 45 *3.14159 /180.0;
+	xpos += (float)(cos(rot) + sin(rot)) * 0.08f;
+	zpos += (float)(-sin(rot) +  cos(rot)) * 0.08f;
 	break;
 
     case GLUT_KEY_DOWN: // walk back (bob head)
-	rot = yrot *3.14159 /180.0;
-	xpos -= (float)(cos(rot) + sin(rot)) * 0.05f;
-	zpos -= (float)(-sin(rot) +  cos(rot)) * 0.05f;
+	// rot = yrot *3.14159 /180.0;
+	rot = 45 *3.14159 /180.0;
+	xpos -= (float)(cos(rot) + sin(rot)) * 0.08f;
+	zpos -= (float)(-sin(rot) +  cos(rot)) * 0.08f;
 	break;
 
     case GLUT_KEY_LEFT: // look left
-	yrot += 1.5f;
+	yrot -= 15.0f;
 	break;
 
     case GLUT_KEY_RIGHT: // look right
-	yrot -= 1.5f;
+	yrot += 15.0f;
 	break;
 
     default:
